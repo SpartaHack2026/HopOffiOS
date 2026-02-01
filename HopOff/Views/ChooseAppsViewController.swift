@@ -27,8 +27,23 @@ class ChooseAppsViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
-        
+        makeTableTransparent()
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.applyAppGradient()
+        view.updateAppGradientFrame() 
+    }
+    
+    private func makeTableTransparent() {
+        tableView.backgroundColor = .clear
+        tableView.backgroundView = nil
+        tableView.isOpaque = false
+
+        // If you have section headers/footers, this helps too
+        tableView.sectionHeaderTopPadding = 0
     }
     
     @IBAction func continueTapped(_ sender: UIButton) {
@@ -80,6 +95,9 @@ extension ChooseAppsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell", for: indexPath)
         
         cell.textLabel?.text = options[indexPath.row]
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
+        cell.isOpaque = false
         
         if indexPath.row == selectedIndex {
             cell.accessoryType = .checkmark

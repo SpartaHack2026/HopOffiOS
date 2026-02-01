@@ -18,6 +18,11 @@ class OpeningPageViewController: UIViewController {
         setupMenuButton()
         showRecommendation()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.applyAppGradient()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         

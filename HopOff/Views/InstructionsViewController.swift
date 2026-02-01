@@ -24,6 +24,11 @@ class InstructionsViewController: UIViewController {
         setupEmbeddedVideo()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.applyAppGradient()
+    }
+    
     @IBAction func finishedOnboardingBtn(_ sender: UIButton) {
         AppDefaults.setHasOnboarded(true)
         

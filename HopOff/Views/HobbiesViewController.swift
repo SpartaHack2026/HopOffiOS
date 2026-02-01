@@ -31,39 +31,30 @@ class HobbiesViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        makeTableTransparent()
         loadHobbies()
         
         configureMoveOnFooter()
     }
     
-    // MARK: - Footer (Continue button)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.applyAppGradient()
+        view.updateAppGradientFrame() // add this helper in your extension
+    }
+
     
-//    private func configureMoveOnFooter() {
-//        let footerHeight: CGFloat = 100
-//        
-//        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: footerHeight))
-//        footer.backgroundColor = .clear
-//        
-//        let button = UIButton(type: .system)
-//        button.setTitle("Continue", for: .normal)
-//        
-//        button.layer.cornerRadius = 10
-//        button.layer.borderWidth = 1
-//        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
-//        
-//        button.addTarget(self, action: #selector(moveOnTapped), for: .touchUpInside)
-//        
-//        footer.addSubview(button)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        NSLayoutConstraint.activate([
-//            button.trailingAnchor.constraint(equalTo: footer.trailingAnchor, constant: -16),
-//            button.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: -16)
-//        ])
-//        
-//        tableView.tableFooterView = footer
-//    }
+    private func makeTableTransparent() {
+        tableView.backgroundColor = .clear
+        tableView.backgroundView = nil
+        tableView.isOpaque = false
+
+        // If you have section headers/footers, this helps too
+        tableView.sectionHeaderTopPadding = 0
+    }
+
+    
+    // MARK: - Footer (Continue button)
     private func configureMoveOnFooter() {
         let footerHeight: CGFloat = 120
 
@@ -76,13 +67,13 @@ class HobbiesViewController: UIViewController {
         // --- STYLE (tinted look) ---
         // Use asset colors
         let primary = UIColor(named: "Primary") ?? .label
-        let secondary = UIColor(named: "Secondary") ?? .secondarySystemBackground
+        let background = UIColor(named: "Background") ?? .secondarySystemBackground
 
         // iOS 15+ recommended styling
         var config = UIButton.Configuration.tinted()
         config.title = "Continue"
-        config.baseForegroundColor = primary          // text color
-        config.baseBackgroundColor = secondary        // tinted background
+        config.baseForegroundColor = .heading        // text color
+        config.baseBackgroundColor = .background        // tinted background
         config.cornerStyle = .capsule                 // pill shape
         config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 22, bottom: 14, trailing: 22)
 
@@ -173,34 +164,7 @@ class HobbiesViewController: UIViewController {
             hobbies = []
         }
     }
-    
-//    private func presentAddEdit(existing: Task? = nil, index: Int? = nil) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        guard let addVC = storyboard.instantiateViewController(withIdentifier: "AddActivityVC") as? AddActivityViewController else {
-//            return
-//        }
-//        
-//        addVC.existing = existing
-//        addVC.existingIndex = index
-//        
-//        addVC.onSave = { [weak self] newItem, existingIndex in
-//            guard let self else { return }
-//            
-//            if let existingIndex {
-//                self.hobbies[existingIndex] = newItem
-//            } else {
-//                self.hobbies.append(newItem)
-//            }
-//            
-//            self.saveHobbies()
-//            self.tableView.reloadData()
-//        }
-//        
-//        addVC.modalPresentationStyle = .formSheet
-//        present(addVC, animated: true)
-//    }
-//
+
     
     private func presentAddEdit(existing: Task? = nil, index: Int? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -272,14 +236,6 @@ extension HobbiesViewController: UITableViewDataSource {
         }
         
         switch sec {
-//        case .hobbies:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "HobbyCell", for: indexPath)
-//            let item = hobbies[indexPath.row]
-//            
-//            cell.textLabel?.text = item.title
-//            cell.detailTextLabel?.text = item.category.rawValue
-//            
-//            return cell
         case .hobbies:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HobbyCell", for: indexPath)
             let item = hobbies[indexPath.row]
@@ -291,14 +247,23 @@ extension HobbiesViewController: UITableViewDataSource {
             let icon = UIImage(systemName: item.category.symbolName)?
                 .applyingSymbolConfiguration(config)
 
+            cell.backgroundColor = .clear
+            cell.contentView.backgroundColor = .clear
+            cell.isOpaque = false
+
             cell.imageView?.image = icon
             cell.imageView?.tintColor = .primary
             cell.imageView?.contentMode = .scaleAspectFit
+            
 
             return cell
             
         case .addRow:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddCell", for: indexPath)
+            cell.backgroundColor = .clear
+            cell.contentView.backgroundColor = .clear
+            cell.isOpaque = false
+
             cell.textLabel?.text = "+ Add Activity"
             cell.accessoryType = .none
             cell.selectionStyle = .default
