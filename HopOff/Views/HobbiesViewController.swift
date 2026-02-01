@@ -140,6 +140,7 @@ class HobbiesViewController: UIViewController {
     private func deleteHobby(at index: Int) {
         hobbies.remove(at: index)
         saveHobbies()
+        RecommendationManager.clearRecommendation()
         tableView.deleteRows(at: [IndexPath(row: index, section: Section.hobbies.rawValue)], with: .automatic)
     }
     

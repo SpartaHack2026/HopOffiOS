@@ -28,7 +28,7 @@ class OpeningPageViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(named: "Primary")
         
         setupMenuButton()
-        
+        showRecommendation()
        
         print("NAV:", navigationController as Any)
         print("NAV BAR hidden:", navigationController?.isNavigationBarHidden as Any)
@@ -90,6 +90,21 @@ class OpeningPageViewController: UIViewController {
         
         present(sheet, animated: true)
     }
+    
+    @IBAction func didTapHopOff(_ sender: UIButton) {
+//        let currentApp = RecommendationManager.getRecommendation()?.app
+
+        // Precompute and save the NEXT suggestion now
+        RecommendationManager.rollNextRecommendation()
+
+        // Present hop-off screen
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HopOffInterruptionVC")
+
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+
     
     private func goToHobbiesForEditing() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
