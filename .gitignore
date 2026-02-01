@@ -1,0 +1,11 @@
+# Xcode
+DerivedData/
+*.xcuserdata
+*.xcuserstate
+*.xccheckout
+
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
