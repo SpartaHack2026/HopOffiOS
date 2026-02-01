@@ -47,7 +47,7 @@ class InstructionsViewController: UIViewController {
     
     private func setupEmbeddedVideo() {
         // 1) Find the local video in the app bundle
-        guard let url = Bundle.main.url(forResource: "onboarding", withExtension: "mp4") else {
+        guard let url = Bundle.main.url(forResource: "onboarding", withExtension: "MP4") else {
             print("Video not found. Check filename + target membership.")
             return
         }

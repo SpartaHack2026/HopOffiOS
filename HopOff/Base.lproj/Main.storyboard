@@ -18,6 +18,10 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hop Off app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd2-yv-x42">
                                 <rect key="frame" x="15" y="278" width="363" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="363" id="4jB-US-PYs"/>
+                                    <constraint firstAttribute="height" constant="36" id="aK6-Vn-YjN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                 <color key="textColor" name="Primary"/>
                                 <nil key="highlightedColor"/>
@@ -44,8 +48,12 @@
                                     <action selector="didTapHopOff:" destination="RrJ-R6-RPT" eventType="touchUpInside" id="wPx-wk-hQV"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="&amp;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsO-pK-2NR">
-                                <rect key="frame" x="16" y="324" width="363" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&amp;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsO-pK-2NR">
+                                <rect key="frame" x="15" y="324" width="363" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="363" id="K9u-7B-ezs"/>
+                                    <constraint firstAttribute="height" constant="36" id="yPu-Ae-jvm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                 <color key="textColor" name="Secondary"/>
                                 <nil key="highlightedColor"/>
@@ -561,7 +569,6 @@
                                 <rect key="frame" x="34" y="510" width="52" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="PeQ-Rs-s4c"/>
-                                    <constraint firstAttribute="width" constant="52" id="YQ9-Kc-Rog"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                 <color key="textColor" name="heading"/>
