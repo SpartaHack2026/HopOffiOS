@@ -16,7 +16,8 @@ class ChooseAppsViewController: UIViewController {
         "Instagram",
         "Snapchat",
         "Facebook",
-        "YouTube"
+        "YouTube",
+        "X"
     ]
     
     private var selectedIndex: Int? = nil

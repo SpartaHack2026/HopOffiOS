@@ -272,13 +272,29 @@ extension HobbiesViewController: UITableViewDataSource {
         }
         
         switch sec {
+//        case .hobbies:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "HobbyCell", for: indexPath)
+//            let item = hobbies[indexPath.row]
+//            
+//            cell.textLabel?.text = item.title
+//            cell.detailTextLabel?.text = item.category.rawValue
+//            
+//            return cell
         case .hobbies:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HobbyCell", for: indexPath)
             let item = hobbies[indexPath.row]
-            
+
             cell.textLabel?.text = item.title
             cell.detailTextLabel?.text = item.category.rawValue
-            
+
+            let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold)
+            let icon = UIImage(systemName: item.category.symbolName)?
+                .applyingSymbolConfiguration(config)
+
+            cell.imageView?.image = icon
+            cell.imageView?.tintColor = .primary
+            cell.imageView?.contentMode = .scaleAspectFit
+
             return cell
             
         case .addRow:

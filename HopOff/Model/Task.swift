@@ -27,4 +27,13 @@ enum ActivityCategory: String, CaseIterable, Codable {
     case school = "School"
     case chores = "Chores"
     case exercise = "Exercise"
+
+    var symbolName: String {
+        switch self {
+        case .exercise: return "figure.run"
+        case .school:   return "graduationcap.fill"
+        case .chores:   return "washer.fill"
+        case .hobby:    return "puzzlepiece.fill"
+        }
+    }
 }

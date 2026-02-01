@@ -23,23 +23,18 @@
                                 <color key="textColor" name="Primary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hop On task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOH-iu-RbX">
-                                <rect key="frame" x="16" y="370" width="363" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hop On task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOH-iu-RbX">
+                                <rect key="frame" x="15" y="370" width="363" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpi-Gb-Kv8">
-                                <rect key="frame" x="124" y="749" width="146" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Continue to app">
-                                    <color key="baseForegroundColor" name="Secondary"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fq3-0v-Vmc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fq3-0v-Vmc">
                                 <rect key="frame" x="128" y="672" width="138" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="KgW-5N-kBV"/>
+                                    <constraint firstAttribute="width" constant="138" id="wgG-bD-eo2"/>
+                                </constraints>
                                 <color key="tintColor" name="Primary"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="HopOff">
@@ -56,17 +51,38 @@
                                 <color key="textColor" name="Secondary"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mpi-Gb-Kv8">
+                                <rect key="frame" x="124" y="734" width="146" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="dDp-X3-Jtl"/>
+                                    <constraint firstAttribute="height" constant="35" id="gkr-36-POt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue to app">
+                                    <color key="baseForegroundColor" name="Secondary"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapContinueToApp:" destination="RrJ-R6-RPT" eventType="touchUpInside" id="KDk-5G-8ag"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Bk-VI-a0P"/>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="EOH-iu-RbX" firstAttribute="leading" secondItem="9Bk-VI-a0P" secondAttribute="leading" constant="15" id="2WL-qC-KS3"/>
+                            <constraint firstItem="Fq3-0v-Vmc" firstAttribute="top" secondItem="EOH-iu-RbX" secondAttribute="bottom" constant="266" id="94D-jj-gRc"/>
                             <constraint firstItem="PsO-pK-2NR" firstAttribute="top" secondItem="vd2-yv-x42" secondAttribute="bottom" constant="10" id="AxR-74-f9y"/>
+                            <constraint firstItem="Mpi-Gb-Kv8" firstAttribute="top" secondItem="Fq3-0v-Vmc" secondAttribute="bottom" constant="17" id="Gm9-2h-NHO"/>
+                            <constraint firstItem="Fq3-0v-Vmc" firstAttribute="leading" secondItem="9Bk-VI-a0P" secondAttribute="leading" constant="128" id="QvC-rB-Wnd"/>
                             <constraint firstItem="9Bk-VI-a0P" firstAttribute="trailing" secondItem="EOH-iu-RbX" secondAttribute="trailing" constant="15" id="U8W-3g-Tpe"/>
                             <constraint firstItem="9Bk-VI-a0P" firstAttribute="trailing" secondItem="vd2-yv-x42" secondAttribute="trailing" constant="15" id="WLz-5N-ZZt"/>
                             <constraint firstItem="9Bk-VI-a0P" firstAttribute="trailing" secondItem="PsO-pK-2NR" secondAttribute="trailing" constant="15" id="b2u-aj-YT2"/>
+                            <constraint firstItem="9Bk-VI-a0P" firstAttribute="trailing" secondItem="Fq3-0v-Vmc" secondAttribute="trailing" constant="127" id="gSD-ci-Ayc"/>
                             <constraint firstItem="EOH-iu-RbX" firstAttribute="top" secondItem="PsO-pK-2NR" secondAttribute="bottom" constant="10" id="gau-Y4-wCg"/>
+                            <constraint firstItem="9Bk-VI-a0P" firstAttribute="trailing" secondItem="Mpi-Gb-Kv8" secondAttribute="trailing" constant="123" id="gpu-Pp-eAc"/>
+                            <constraint firstItem="9Bk-VI-a0P" firstAttribute="bottom" secondItem="Mpi-Gb-Kv8" secondAttribute="bottom" constant="15" id="jC0-O3-kza"/>
                             <constraint firstItem="vd2-yv-x42" firstAttribute="top" secondItem="9Bk-VI-a0P" secondAttribute="top" constant="116" id="lBc-Zx-cJy"/>
+                            <constraint firstItem="Mpi-Gb-Kv8" firstAttribute="leading" secondItem="9Bk-VI-a0P" secondAttribute="leading" constant="124" id="meP-47-oxm"/>
                             <constraint firstItem="vd2-yv-x42" firstAttribute="leading" secondItem="9Bk-VI-a0P" secondAttribute="leading" constant="15" id="uuG-AK-NFb"/>
                             <constraint firstItem="PsO-pK-2NR" firstAttribute="leading" secondItem="9Bk-VI-a0P" secondAttribute="leading" constant="15" id="z9t-jD-E2K"/>
                         </constraints>
@@ -248,7 +264,7 @@
                                     <constraint firstAttribute="height" constant="601" id="nCh-iL-QWv"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HobbyCell" textLabel="eXr-t6-Ti0" detailTextLabel="urv-K0-jsL" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="b8D-jZ-ukn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HobbyCell" textLabel="eXr-t6-Ti0" detailTextLabel="urv-K0-jsL" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="b8D-jZ-ukn">
                                         <rect key="frame" x="0.0" y="50" width="393" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b8D-jZ-ukn" id="FZG-aX-EEw">

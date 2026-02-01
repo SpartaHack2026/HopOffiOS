@@ -104,8 +104,44 @@ class OpeningPageViewController: UIViewController {
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
-
     
+    @IBAction func didTapContinueToApp(_ sender: UIButton) {
+        guard let rec = RecommendationManager.getRecommendation() else {
+            presentSimpleAlert(title: "No app selected", message: "Pick apps in your list first.")
+            return
+        }
+
+        guard let link = AppLinkStore.link(for: rec.app) else {
+            presentSimpleAlert(
+                title: "Not supported yet",
+                message: "I don’t have a link set up for \"\(rec.app)\"."
+            )
+            return
+        }
+
+        openAppOrWebsite(appLink: link)
+    }
+
+    private func openAppOrWebsite(appLink: AppLink) {
+        let appURL = appLink.appURL
+        let webURL = appLink.webURL
+
+        // If installed (and scheme whitelisted), open app
+        if UIApplication.shared.canOpenURL(appURL) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            // Otherwise open web
+            UIApplication.shared.open(webURL, options: [:], completionHandler: nil)
+        }
+    }
+
+    private func presentSimpleAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+
+
     private func goToHobbiesForEditing() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
