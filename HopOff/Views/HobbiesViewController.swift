@@ -39,47 +39,75 @@ class HobbiesViewController: UIViewController {
     
     // MARK: - Footer (Continue button)
     
+//    private func configureMoveOnFooter() {
+//        let footerHeight: CGFloat = 100
+//        
+//        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: footerHeight))
+//        footer.backgroundColor = .clear
+//        
+//        let button = UIButton(type: .system)
+//        button.setTitle("Continue", for: .normal)
+//        
+//        button.layer.cornerRadius = 10
+//        button.layer.borderWidth = 1
+//        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
+//        
+//        button.addTarget(self, action: #selector(moveOnTapped), for: .touchUpInside)
+//        
+//        footer.addSubview(button)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        NSLayoutConstraint.activate([
+//            button.trailingAnchor.constraint(equalTo: footer.trailingAnchor, constant: -16),
+//            button.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: -16)
+//        ])
+//        
+//        tableView.tableFooterView = footer
+//    }
     private func configureMoveOnFooter() {
-        let footerHeight: CGFloat = 100
-        
+        let footerHeight: CGFloat = 120
+
         let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: footerHeight))
         footer.backgroundColor = .clear
-        
+
         let button = UIButton(type: .system)
         button.setTitle("Continue", for: .normal)
-        
-        button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
-        
+
+        // --- STYLE (tinted look) ---
+        // Use asset colors
+        let primary = UIColor(named: "Primary") ?? .label
+        let secondary = UIColor(named: "Secondary") ?? .secondarySystemBackground
+
+        // iOS 15+ recommended styling
+        var config = UIButton.Configuration.tinted()
+        config.title = "Continue"
+        config.baseForegroundColor = primary          // text color
+        config.baseBackgroundColor = secondary        // tinted background
+        config.cornerStyle = .capsule                 // pill shape
+        config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 22, bottom: 14, trailing: 22)
+
+        button.configuration = config
+
+        // Optional: font weight similar to your screenshot
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+
+        // Optional: remove any border you previously had
+        button.layer.borderWidth = 0
+
         button.addTarget(self, action: #selector(moveOnTapped), for: .touchUpInside)
-        
+
         footer.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
-            button.trailingAnchor.constraint(equalTo: footer.trailingAnchor, constant: -16),
+            button.centerXAnchor.constraint(equalTo: footer.centerXAnchor),
             button.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: -16)
         ])
-        
+
         tableView.tableFooterView = footer
     }
+
     
-//    @objc private func moveOnTapped() {
-//        switch entryMode {
-//            
-//        case .onboarding:
-//            // ✅ CONTINUE ONBOARDING
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let chooseAppsVC = storyboard.instantiateViewController(withIdentifier: "ChooseAppsVC")
-//            
-//            navigationController?.pushViewController(chooseAppsVC, animated: true)
-//            
-//        case .editFromOpeningPage:
-//            // ✅ RETURN BACK TO OPENING PAGE
-//            navigationController?.popViewController(animated: true)
-//        }
-//    }
     @objc private func moveOnTapped() {
         print("🔘 Move On tapped")
         print("📍 entryMode:", entryMode)
@@ -145,33 +173,73 @@ class HobbiesViewController: UIViewController {
         }
     }
     
+//    private func presentAddEdit(existing: Task? = nil, index: Int? = nil) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        guard let addVC = storyboard.instantiateViewController(withIdentifier: "AddActivityVC") as? AddActivityViewController else {
+//            return
+//        }
+//        
+//        addVC.existing = existing
+//        addVC.existingIndex = index
+//        
+//        addVC.onSave = { [weak self] newItem, existingIndex in
+//            guard let self else { return }
+//            
+//            if let existingIndex {
+//                self.hobbies[existingIndex] = newItem
+//            } else {
+//                self.hobbies.append(newItem)
+//            }
+//            
+//            self.saveHobbies()
+//            self.tableView.reloadData()
+//        }
+//        
+//        addVC.modalPresentationStyle = .formSheet
+//        present(addVC, animated: true)
+//    }
+//
+    
     private func presentAddEdit(existing: Task? = nil, index: Int? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+
         guard let addVC = storyboard.instantiateViewController(withIdentifier: "AddActivityVC") as? AddActivityViewController else {
             return
         }
-        
+
         addVC.existing = existing
         addVC.existingIndex = index
-        
+
         addVC.onSave = { [weak self] newItem, existingIndex in
             guard let self else { return }
-            
+
             if let existingIndex {
                 self.hobbies[existingIndex] = newItem
             } else {
                 self.hobbies.append(newItem)
             }
-            
+
             self.saveHobbies()
             self.tableView.reloadData()
         }
-        
-        addVC.modalPresentationStyle = .formSheet
+
+        // ✅ Present as a bottom sheet with fixed height
+        addVC.modalPresentationStyle = .pageSheet
+
+        if let sheet = addVC.sheetPresentationController {
+            // Choose a height that looks good (example: 320)
+            sheet.detents = [
+                .custom { _ in 320 }
+            ]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 18
+            sheet.largestUndimmedDetentIdentifier = .medium
+        }
+
         present(addVC, animated: true)
     }
-    
+
     
     
 }

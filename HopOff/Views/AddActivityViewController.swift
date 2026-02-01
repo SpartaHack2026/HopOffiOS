@@ -30,6 +30,12 @@ class AddActivityViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = UIColor(named: "Primary")
+    }
+
+    
     @IBAction func saveTapped(_ sender: UIButton) {
         let name = (nameTextField.text ?? "")
             .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

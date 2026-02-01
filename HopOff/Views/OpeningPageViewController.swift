@@ -18,6 +18,23 @@ class OpeningPageViewController: UIViewController {
         setupMenuButton()
         showRecommendation()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        
+
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationBar.tintColor = UIColor(named: "Primary")
+        
+        setupMenuButton()
+        
+       
+        print("NAV:", navigationController as Any)
+        print("NAV BAR hidden:", navigationController?.isNavigationBarHidden as Any)
+
+    }
+
     
     private func showRecommendation() {
         guard let rec = RecommendationManager.getRecommendation() else {
